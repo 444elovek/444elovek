@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница 4</title>
+</head>
+<body>
+    <h1>Страница 4</h1>
+    <h2>Все идеи:</h2>
+    <ul id="allIdeasList"></ul>
+    <button onclick="clearIdeas()">Удалить все идеи</button>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            displayAllIdeas("allIdeasList");
+        });
+
+        function displayAllIdeas(listId) {
+            let allIdeasList = document.getElementById(listId);
+            allIdeasList.innerHTML = "";
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                let value = localStorage.getItem(key);
+                if (key !== null && key !== "") {
+                    let listItem = document.createElement("li");
+                    listItem.textContent = value;
+                    allIdeasList.appendChild(listItem);
+                }
+            }
+        }
+
+        function clearIdeas() {
+            localStorage.clear();
+            displayAllIdeas("allIdeasList");
+        }
+    </script>
+</body>
+</html>
